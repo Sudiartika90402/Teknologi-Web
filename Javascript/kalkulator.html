@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I-Calc</title>
+	<script>
+		console.warn = () => {};
+	</script>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="calcBody">
+	<div class="px-10 py-10">
+		<h1 class="text-center text-3xl font-bold bg-orange-700 py-9 text-white">I-Calc</h1>
+		<p class="text-center text-[10px] pb-5">Mending pake kalkulator HP aja :)</p>
+		<form name="form" class="flex flex-row">
+			<input class="w-80 h-12 justify-center items-end m-1 font-semibold px-2 border border-black hover:border-gray-500 rounded" name="textarea">
+		</form>
+        <table>
+			<tr>
+                <td><input class="w-14 h-14 items-center justify-center font-bold m-1 py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="7" onclick="insert(7)"></td>
+				<td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="8" onclick="insert(8)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="9" onclick="insert(9)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="/" onclick="insert(' / ')"></td>	
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="C" onclick="clean()"></td>		
+			</tr>
+			<tr>
+				<td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="4" onclick="insert(4)"></td>
+				<td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="5" onclick="insert(5)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="6" onclick="insert(6)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="*" onclick="insert(' * ')"></td>		
+			</tr>
+			<tr>
+                
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="1" onclick="insert(1)"></td>
+				<td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="2" onclick="insert(2)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="3" onclick="insert(3)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="-" onclick="insert(' - ')"></td>						
+			</tr>
+			<tr>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="." onclick="insert('.')"></td>
+				<td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="0" onclick="insert(0)"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="=" onclick="equal()"></td>
+                <td><input class="w-14 h-14 justify-center items-center m-1 font-bold py-2 px-2 hover:bg-orange-600 hover:text-white rounded-full text-black border-2 text-xl transition duration-500 ease-in-out" type="button" value="+" onclick="insert(' + ')"></td>		
+			</tr>
+		</table>
+        
+	</div>
+	</div>
+    </div>
+
+	<script>
+		const bodyClass = "bg-blue-500 bg-gradient-to-br from-blue-200 bg-opacity-25";
+		const bdy       = document.querySelector("body");
+		bodyClass.split(" ").forEach((cls) => bdy.classList.add(cls));
+
+		const calcBodyClass ="max-w-lg rounded overflow-hidden shadow-2xl bg-white bg-opacity-75";
+		const calcBody      = document.querySelector(".calcBody");
+		calcBodyClass.split(" ").forEach((cls) => calcBody.classList.add(cls));
+
+		// Insert angka
+		function insert(num){
+			document.form.textarea.value = document.form.textarea.value + num;
+		}
+
+		// Fungsi Hitung
+		function equal(){
+			var hasil = document.form.textarea.value;
+			document.form.textarea.value = eval(hasil);
+		}
+
+		// Fungsi Clean atau Bersihkan Text
+		function clean(){
+			document.form.textarea.value = "";
+		}
+	</script>
+</body>
+
+</html>
